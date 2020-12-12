@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { Fragment } from "react";
+import { Formulario } from "./components/Formulario";
+import { Header } from "./components/Header";
 
 export const App = () => {
   return (
-    <div>
-      <h1>aplicacion del clima</h1>
-    </div>
-  )
-}
+    <Fragment>
+      <Header titulo="Clima react app" />
+      <div className="contenedor-form">
+        <div className="container">
+          <div className="row">
+            <div className="col m6 s12">
+              <Formulario />
+            </div>
+            <div className="col m6 s12">2</div>
+          </div>
+        </div>
+      </div>
+    </Fragment>
+  );
+};
