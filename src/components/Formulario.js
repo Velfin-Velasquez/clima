@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 
-export const Formulario = () => {
-  //state de formulario
-  const [busqueda, guardarBusqueda] = useState({
-    ciudad: "",
-    pais: "",
-  });
-
+export const Formulario = ({ busqueda, guardarBusqueda, guardarConsulta }) => {
   //state de error
   const [error, guardarError] = useState(false);
 
@@ -35,6 +29,7 @@ export const Formulario = () => {
     guardarError(false);
 
     //enviar datos al componente principal
+    guardarConsulta(true);
   };
 
   return (
@@ -54,6 +49,7 @@ export const Formulario = () => {
       <div className="input-field col s12">
         <select name="pais" value={pais} onChange={handleChange}>
           <option value="">--Seleccione un país--</option>
+          <option value="EC">Ecuador</option>
           <option value="US">Estados Unidos</option>
           <option value="MX">México</option>
           <option value="AR">Argentina</option>
@@ -61,7 +57,6 @@ export const Formulario = () => {
           <option value="CR">Costa Rica</option>
           <option value="ES">España</option>
           <option value="PE">Perú</option>
-          <option value="EC">Ecuador</option>
         </select>
         <label htmlFor="pais">Pais:</label>
         <div className="input-field col s12">
