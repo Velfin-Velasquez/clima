@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Clima } from "./components/Clima";
+import { Error } from "./components/Error";
 import { Formulario } from "./components/Formulario";
 import { Header } from "./components/Header";
 
@@ -16,6 +17,9 @@ export const App = () => {
   //state para guardar resultado de la API
   const [resultado, guardarResultado] = useState({});
 
+  //state error
+  const [error, guardarError] = useState(false);
+
   //extraer variables del formulario
   const { ciudad, pais } = busqueda;
 
@@ -30,13 +34,28 @@ export const App = () => {
         //guardando resultado en el state
         guardarResultado(resultadoAPI);
 
-        //cerrar la peticion 
+        //cerrar la peticion
         guardarConsulta(false);
 
+        console.log(resultadoAPI.cod);
+        //validando posibles errores
+        if (resultadoAPI.cod === "404") {
+          guardarError(true);
+        } else {
+          guardarError(false);
+        }
       }
     };
     consultarAPI();
   }, [consultar]);
+
+  let componente;
+
+  if (error) {
+    componente = <Error mensaje="No hay resultados!!" />;
+  } else {
+    componente = <Clima resultado={resultado} />;
+  }
 
   return (
     <Fragment>
@@ -51,9 +70,7 @@ export const App = () => {
                 guardarConsulta={guardarConsulta}
               />
             </div>
-            <div className="col m6 s12">
-              <Clima resultado={resultado} />
-            </div>
+            <div className="col m6 s12">{componente}</div>
           </div>
         </div>
       </div>

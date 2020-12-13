@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Error } from "./Error";
 
 export const Formulario = ({ busqueda, guardarBusqueda, guardarConsulta }) => {
   //state de error
@@ -34,7 +35,7 @@ export const Formulario = ({ busqueda, guardarBusqueda, guardarConsulta }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      {error ? <p className="red darken-4 error">Hay campos vacios</p> : null}
+      {error ? <Error mensaje="Existen campos vacios" /> : null}
       <div className="input-field col s12">
         <input
           type="text"
