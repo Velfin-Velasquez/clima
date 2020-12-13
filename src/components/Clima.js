@@ -15,8 +15,8 @@ export const Clima = ({ resultado }) => {
           {parseFloat(main.temp - kelvin, 10).toFixed(2)}
           <span> &#x2103;</span>
         </p>
-        <p>Temperatura Maxima: {parseFloat(main.temp_max).toFixed(2)}<span> &#x2103;</span></p>
-        <p>Temperatura Minima: {parseFloat(main.temp_min).toFixed(2)}<span> &#x2103;</span></p>
+        <p>Temperatura Maxima: {parseFloat(main.temp_max - kelvin, 10).toFixed(2)}<span> &#x2103;</span></p>
+        <p>Temperatura Minima: {parseFloat(main.temp_min - kelvin, 10).toFixed(2)}<span> &#x2103;</span></p>
         
       </div>
     </div>
